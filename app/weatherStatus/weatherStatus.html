@@ -1,0 +1,65 @@
+<div class="panel panel-primary search-weather">
+  
+    <div class="panel-heading clearfix">
+        <span class="pull-left"></span>
+        <h4 class="pull-left">Weather App</h4>
+    </div>
+
+    <div class="panel-body">
+        <form name="searchCityForm" novalidate>
+            <div class="form-group search-input">
+                <input
+                    class="form-control"
+                    type="text"
+                    name="citySearch"
+                    ng-model="data.location"
+                    placeholder="Type address in the following format (City, State, Country)">
+                <span class="search-button">
+                    <button class="btn btn-primary" type="submit" ng-click="searchCity(data.location, searchCityForm)">Search</button>
+                    <button class="btn btn-default" type="button" ng-click="clear()">Clear</button>
+                </span>
+            </div>
+        </form>
+        <div ng-show="!uiState.hasResults" class="alert alert-warning" role="alert">
+                <h4 class="alert-heading">No result match found</h4>
+                <p>Make sure you have formatted the input correctly e.g. Sydney, NSW, AU</p>
+        </div>
+
+    </div>
+  
+  </div>
+
+
+<div class="panel panel-primary" ng-show="uiState.hasResults">
+    <div class="panel-body">
+        <div class="current-status">
+            <div>Current Weather in {{data.searchResult.location.city}}</div>
+            <ul>
+                <li>
+                    {{data.searchResult.item.condition.temp}} &#176;{{data.searchResult.units.temperature}}
+                </li>
+                <li>
+                    {{data.searchResult.item.condition.text}}
+                </li>
+            </ul>
+        </div>
+        <div class="forecast-title">Future Forecast</div>
+        <table class="table table-properties">
+            <tbody>
+                <tr ng-repeat="result in data.searchResult.item.forecast | limitTo:5">
+                    <td>
+                        {{result.date}}  
+                    </td>
+                    <td>
+                        {{result.low}} - {{result.high}}  &#176;{{data.searchResult.units.temperature}}
+                    </td>
+                    <td>
+                        {{result.text}}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+</div>
+    

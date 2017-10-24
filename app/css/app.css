@@ -1,0 +1,24 @@
+.search-weather .search-input input{
+    display: inline-block;
+    width: 40%;
+}
+
+.search-weather .search-button button{
+    margin-left: 15px;
+}
+
+.current-status {
+    font-weight: bold;
+}
+
+.current-status div:first-child {
+    font-size: 30px;
+}
+
+.current-status ul {
+    list-style: none;
+}
+
+.forecast-title {
+    font-size: 20px;
+}
