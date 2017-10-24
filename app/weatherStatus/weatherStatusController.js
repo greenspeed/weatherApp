@@ -44,7 +44,6 @@
         function search(location) {
             weatherService.getWeather(location)
                 .then(function (data) {
-                    console.log(data);
                     processSearchResult(data);
                 }, function (error) {
                     console.log(error);
@@ -79,7 +78,6 @@
         }
 
         function init() {
-            console.log("init");
             search(defaultLocation);
         }
 

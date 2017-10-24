@@ -11,22 +11,22 @@ app.service('weatherService', function($http, $q){
                      .replace('country', location.country);
         console.log(query);
         return query;
-    }
+    };
 
     var getUrl = function(location){
         var baseUrl = 'https://query.yahooapis.com/v1/public/yql?q=';
         var query = encodeURIComponent(getQuery(location));
         var finalUrl = baseUrl + query;
         return finalUrl;
-    }
+    };
 
-    this.getWeather = function(location){
+    this.getWeather = function (location) {
         var url = getUrl(location);
         var params = {
             format: 'json',
             env: 'store%3A%2F%2Fdatatables.org%2Falltableswithkeys',
             callback: 'JSON_CALLBACK'
-        }
+        };
         var deferred = $q.defer();
         $http({
             method: 'JSONP',
@@ -38,9 +38,9 @@ app.service('weatherService', function($http, $q){
             deferred.resolve(result);
         }).error(function(error) {
             console.log(JSON.stringify(error));
-            deferred.reject(JSON.stringify(error))
+            deferred.reject(JSON.stringify(error));
         });
         return deferred.promise;
-    }
+    };
 
 });
